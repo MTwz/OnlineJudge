@@ -10,6 +10,10 @@ string words[MAX_VALUE];
 int visit[MAX_VALUE];
 int nextWords[MAX_VALUE][MAX_VALUE];
 int result = 0;
+
+///矩阵：记录前一个单词i后接单词j时，串增加的长度
+//例如：beast和astonish，该值为5；ast和yuyu，该值为0
+
 void buildMartix(int n){
     int nextWordsIdx,firstWordIdx;
     bool match;

@@ -41,9 +41,9 @@ int main(){
     double curContainer = 0.0;
     int curIdx = 0;
 
-    while(curIdx <= N){
+    while(1){
         while(loc <= N && arr[curIdx].d + MAX_DIST >= arr[loc].d){
-            if(arr[curIdx].p > arr[loc].p){
+            if(arr[curIdx].p > arr[loc].p){//只要遇到比当前价格低的，就加到正好到该节点的油
                 result += ((arr[loc].d - arr[curIdx].d) - curContainer * perDist) / perDist * arr[curIdx].p;//加到正好到
                 curIdx = loc;
                 loc += 1;
@@ -59,19 +59,15 @@ int main(){
         }
 
         if(arr[curIdx].d + MAX_DIST >= dist){
-            result += ((dist - curContainer * perDist - arr[curIdx].d) / perDist) * arr[curIdx].p;//加到正好到重点
+            result += ((dist - curContainer * perDist - arr[curIdx].d) / perDist) * arr[curIdx].p;//加到正好到终点
             break;
         }else{
             result += (container - curContainer) * arr[curIdx].p;//加满
-            curContainer = curContainer - (arr[minIdx].d - arr[curIdx].d) / perDist;
+            curContainer = container - (arr[minIdx].d - arr[curIdx].d) / perDist;
             curIdx = minIdx;
-            curDist = arr[minIdx].d;
             minFee = INF;
             loc = minIdx + 1;
         }
-
-
-        //走到最小的点
 
     }
     printf("%.2lf",result);

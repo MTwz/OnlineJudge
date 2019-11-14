@@ -36,7 +36,7 @@ int main()
         rule[ori][tgt] = 1;
     }
 
-    for(int i = 0; i < 10; i++){//dfs求当前数字可变换的数字个数
+    for(int i = 0; i < 10; i++){//dfs求当前数字可变换的数字个数（也可采用Floyd算法）
         memset(visit,0,sizeof(visit));
         visit[i] = 1;
         change[i] = dfs(i)+1;//加1是计算自身
